@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import AddForm
 from .models import Contact
 from django.http import HttpResponseRedirect
+from django.views.generic.detail import DetailView
+
 
 def show(request):
     """ 
@@ -41,4 +43,21 @@ def add(request):
     else:
         return render(request, 'mycontacts/add.html')
 
+def ContactDetailView(request, detail_id):
+    """ This function is called to edit one contact member to your contact list in your Database """
+    data = get_object_or_404(Contact, pk=detail_id)
+
+    context = {
+      "data":data
+  }
+    return render(request, "mycontacts/view.html", context)
+
+
+    # def get_object(self, *args, **kwargs):
+    #     return get_object_or_404(Contact, id=self.kwargs['id'])
     
+    # return render(request, 'mycontacts/view.html')  
+
+    
+  
+  

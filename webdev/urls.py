@@ -20,6 +20,7 @@ from mycontacts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.show),
+    path('', views.show, name="home"),
     path('add/', views.add),
+    path('detail/<int:detail_id>/', views.ContactDetailView, name="detail"),
 ]
