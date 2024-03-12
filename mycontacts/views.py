@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
 
 
-def show(request):
+def ShowContacts(request):
     """ 
     This function gets all the members in your Database through your Model
     Any further usage please refer to: https://docs.djangoproject.com/el/1.10/ref/models/querysets/
@@ -13,7 +13,7 @@ def show(request):
     contact_list = Contact.objects.all()
     return render(request, 'mycontacts/show.html',{'contacts': contact_list})
     
-def add(request):
+def AddContact(request):
     """ This function is called to add one contact member to your contact list in your Database """
     if request.method == 'POST':
         
@@ -35,7 +35,7 @@ def add(request):
                 )
                  
             contact_list = Contact.objects.all()
-            return render(request, 'mycontacts/show.html',{'contacts': contact_list})    
+            return HttpResponseRedirect("/")   
         
         else:
             """ redirect to the same page if django_form goes wrong """
@@ -49,15 +49,16 @@ def ContactDetailView(request, detail_id):
 
     context = {
       "data":data
-  }
+    }
     return render(request, "mycontacts/view.html", context)
 
 
-    # def get_object(self, *args, **kwargs):
-    #     return get_object_or_404(Contact, id=self.kwargs['id'])
-    
-    # return render(request, 'mycontacts/view.html')  
+def ContactDelete(request, detail_id):
+    """ This function is called to delete one contact member  """
 
+    contact = Contact.objects.get(pk=detail_id).delete()
     
-  
-  
+    return HttpResponseRedirect("/")
+    
+def ContactDetailEdit(request, detail_id):   
+    pass 
