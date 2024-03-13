@@ -1,4 +1,4 @@
-from mycontacts import models
+from mycontacts.models import *
 
 class Contact(models.Model):
     """ For other types of fields for different purpose, please refer to: https://docs.djangoproject.com/ja/1.10/ref/models/fields/ """

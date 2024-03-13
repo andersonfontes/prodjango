@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import AddForm
-from .models.models import Contact
+from .models.Contact import Contact
 from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
 
